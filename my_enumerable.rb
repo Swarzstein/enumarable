@@ -4,11 +4,14 @@ module MyEnumerable
     true
   end
 
-  def filter(&block)
-  end
-
   def any?(&block)
     each { |item| return true if block.call(item) }
     false
+  end
+
+  def filter(&block)
+    array = []
+    each { |item| array << item if block.call(item) }
+    array
   end
 end
