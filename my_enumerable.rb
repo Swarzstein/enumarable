@@ -1,8 +1,14 @@
 module MyEnumerable
-  def all?
+  def all?(&block)
+    each { |item| return false unless block.call(item) }
+    true
   end
-  def any?
+
+  def filter(&block)
   end
-  def filter
+
+  def any?(&block)
+    each { |item| return true if block.call(item) }
+    false
   end
 end
